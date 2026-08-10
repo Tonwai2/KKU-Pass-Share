@@ -74,7 +74,6 @@
 
             <!-- Header Actions -->
             <div class="flex items-center space-x-3">
-                <!-- Auth Button Area (ปรับตามสถานะ Login) -->
                 <div id="authNavArea">
                     <button onclick="openAuthModal('login')"
                         class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-700/80 transition font-medium hover:border-slate-500">
@@ -82,7 +81,6 @@
                     </button>
                 </div>
 
-                <!-- ปุ่มลงประกาศส่งต่อ (จะตรวจการเข้าสู่ระบบก่อนเสมอ) -->
                 <button onclick="handleSellClick()"
                     class="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold text-xs sm:text-sm px-4.5 py-2.5 rounded-xl shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition active:scale-95 flex items-center gap-1.5">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -109,7 +107,7 @@
             ส่งต่อสิทธิ์ ปล่อยของใช้ <span class="text-gradient">เด็ก มข.</span>
         </h1>
 
-       <br>
+        <br>
 
         <!-- Search Box -->
         <div
@@ -131,6 +129,7 @@
         </div>
     </header>
     <br>
+
     <!-- Main Content -->
     <main class="max-w-6xl mx-auto px-4 pb-20">
         <div class="flex justify-between items-center mb-8 border-b border-slate-800 pb-4 overflow-x-auto gap-4">
@@ -168,6 +167,11 @@
             <!-- Card 1 -->
             <div class="card-item glass-card rounded-2xl border border-slate-800 overflow-hidden card-hover flex flex-col justify-between"
                 data-category="table" data-title="ร้านหลังมัก โซน A หน้าเวที">
+                <!-- แท็กรูปภาพตัวอย่าง -->
+                <div class="h-44 w-full bg-slate-800 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&auto=format&fit=crop"
+                        alt="ร้านหลังมัก" class="w-full h-full object-cover">
+                </div>
                 <div class="p-5">
                     <div class="flex justify-between items-start mb-3">
                         <span
@@ -210,6 +214,11 @@
             <!-- Card 2 -->
             <div class="card-item glass-card rounded-2xl border border-slate-800 overflow-hidden card-hover flex flex-col justify-between"
                 data-category="ticket" data-title="บัตร Three Man Down ศูนย์ประชุม มข.">
+                <!-- แท็กรูปภาพตัวอย่าง -->
+                <div class="h-44 w-full bg-slate-800 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=600&auto=format&fit=crop"
+                        alt="บัตรคอนเสิร์ต" class="w-full h-full object-cover">
+                </div>
                 <div class="p-5">
                     <div class="flex justify-between items-start mb-3">
                         <span
@@ -251,6 +260,11 @@
             <!-- Card 3 -->
             <div class="card-item glass-card rounded-2xl border border-slate-800 overflow-hidden card-hover flex flex-col justify-between"
                 data-category="book" data-title="หนังสือสรุปเตรียมสอบ Calculus 1 และ Physics">
+                <!-- แท็กรูปภาพตัวอย่าง -->
+                <div class="h-44 w-full bg-slate-800 overflow-hidden relative">
+                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&auto=format&fit=crop"
+                        alt="หนังสือเรียน" class="w-full h-full object-cover">
+                </div>
                 <div class="p-5">
                     <div class="flex justify-between items-start mb-3">
                         <span
@@ -289,9 +303,14 @@
                 </div>
             </div>
 
-            <!-- Card 4 -->
+            <!-- Card 4 (ของใช้สภาพดี) -->
             <div class="card-item glass-card rounded-2xl border border-slate-800 overflow-hidden card-hover flex flex-col justify-between"
                 data-category="item" data-title="โต๊ะเขียนหนังสืออ่านหนังสือ และเก้าอี้สุขภาพ">
+                <!-- แท็กรูปภาพตัวอย่างสำหรับหมวดของใช้ (สามารถเปลี่ยน URL ใน src ได้) -->
+                <div class="h-44 w-full bg-slate-800 overflow-hidden relative">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ953RXysD0z4-VHbT5pgBIV_siw9q6d1hsYHeb1Ny2xQ&s=10"
+                        alt="โต๊ะอ่านหนังสือ" class="w-full h-full object-cover">
+                </div>
                 <div class="p-5">
                     <div class="flex justify-between items-start mb-3">
                         <span
@@ -333,7 +352,7 @@
         </div>
     </main>
 
-    <!-- Modal 1: เข้าสู่ระบบ / สมัครสมาชิก -->
+    <!-- Modal 1: Auth -->
     <div id="authModal"
         class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
         <div class="glass-card border border-slate-700/80 rounded-2xl max-w-md w-full overflow-hidden shadow-2xl">
@@ -344,12 +363,10 @@
                     class="w-1/2 py-3.5 text-xs font-medium text-slate-400 hover:text-slate-200">สมัครสมาชิกใหม่</button>
             </div>
             <div class="p-6">
-                <!-- กล่องข้อความแจ้งเตือนกรณีเข้าใช้อัตโนมัติ -->
                 <div id="authNotice"
                     class="hidden mb-4 p-3 bg-orange-500/10 border border-orange-500/30 rounded-xl text-xs text-orange-400 text-center font-medium">
                     🔒 กรุณาเข้าสู่ระบบก่อนลงประกาศส่งต่อครับ
                 </div>
-
                 <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
                     <div>
                         <label class="block text-xs font-medium text-slate-300 mb-1">อีเมล มข. / เบอร์โทรศัพท์</label>
@@ -438,7 +455,7 @@
         </div>
     </div>
 
-    <!-- Modal 3: Sell Form (ลงขายของ) -->
+    <!-- Modal 3: Sell Form -->
     <div id="sellModal"
         class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
         <div class="glass-card border border-slate-700/80 rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl">
@@ -468,6 +485,11 @@
                         class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
                 </div>
                 <div>
+                    <label class="block text-xs font-medium text-slate-300 mb-1">URL รูปภาพสินค้า (ถ้ามี)</label>
+                    <input type="url" id="fImgUrl" placeholder="https://example.com/image.jpg"
+                        class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
+                </div>
+                <div>
                     <label class="block text-xs font-medium text-slate-300 mb-1">ราคาปล่อยต่อ (บาท)</label>
                     <input type="number" id="fSellPrice" required placeholder="250"
                         class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
@@ -478,22 +500,18 @@
         </div>
     </div>
 
-    <!-- JavaScript ระบบจำลองการยืนยันตัวตนและการล็อกอิน -->
+    <!-- JavaScript ระบบทำงานหลัก -->
     <script>
-        // สถานะระบบจำลองการเข้าสู่ระบบ
-        let currentUser = null; // ถ้า null แปลว่ายังไม่ได้ล็อกอิน
+        let currentUser = null;
 
         function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
-        // ฟังก์ชันตรวจสอบความปลอดภัยเมื่อกดปล่อยของ
         function handleSellClick() {
             if (!currentUser) {
-                // ถ้ายังไม่ล็อกอิน ให้ขึ้นเตือนและเปิดหน้าต่าง ล็อกอิน ก่อน
                 document.getElementById('authNotice').classList.remove('hidden');
                 openAuthModal('login');
             } else {
-                // ถ้าล็อกอินแล้ว อนุญาตให้เปิดหน้าต่างลงขายได้
                 document.getElementById('sellerBadge').innerText = "ประกาศในชื่อบัญชี: " + currentUser.name + " (" + currentUser.type + ")";
                 openModal('sellModal');
             }
@@ -523,132 +541,120 @@
             }
         }
 
-        function openDetailModal(name, location, time, seats, timing, realPrice, sellPrice, note) {
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            currentUser = { name: email.split('@')[0], type: "นักศึกษา มข. ✓" };
+            updateAuthNav();
+            closeModal('authModal');
+            alert('เข้าสู่ระบบสำเร็จแล้ว!');
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value;
+            const type = document.getElementById('regType').value === 'student' ? 'นักศึกษา มข. ✓' : 'บุคคลทั่วไป ✓';
+            currentUser = { name: name, type: type };
+            updateAuthNav();
+            closeModal('authModal');
+            alert('สมัครสมาชิกและเข้าสู่ระบบสำเร็จ!');
+        }
+
+        function updateAuthNav() {
+            const navArea = document.getElementById('authNavArea');
+            if (currentUser) {
+                navArea.innerHTML = `<span class="text-xs text-orange-400 font-semibold bg-orange-500/10 px-3 py-1.5 rounded-xl border border-orange-500/20">👤 ${currentUser.name}</span>`;
+            }
+        }
+
+        function filterCategory(cat) {
+            const items = document.querySelectorAll('.card-item');
+            let count = 0;
+            items.forEach(item => {
+                if (cat === 'all' || item.getAttribute('data-category') === cat) {
+                    item.classList.remove('hidden');
+                    count++;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+            document.getElementById('itemCount').innerText = count;
+            document.getElementById('noResults').classList.toggle('hidden', count > 0);
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = "tab-btn bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-700 transition";
+            });
+            const activeBtn = document.getElementById('btn-' + cat);
+            if (activeBtn) {
+                activeBtn.className = "tab-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white text-xs sm:text-sm px-4 py-2 rounded-xl font-medium shadow-md transition";
+            }
+        }
+
+        function searchCards() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const items = document.querySelectorAll('.card-item');
+            let count = 0;
+            items.forEach(item => {
+                const title = item.getAttribute('data-title').toLowerCase();
+                if (title.includes(query)) {
+                    item.classList.remove('hidden');
+                    count++;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+            document.getElementById('itemCount').innerText = count;
+            document.getElementById('noResults').classList.toggle('hidden', count > 0);
+        }
+
+        function openDetailModal(name, zone, date, seats, time, realPrice, sellPrice, note) {
             document.getElementById('mName').innerText = name;
-            document.getElementById('mZoneDate').innerText = '📍 ' + location + ' • ' + time;
+            document.getElementById('mZoneDate').innerText = '📍 ' + zone + ' • ' + date;
             document.getElementById('mSeats').innerText = seats;
-            document.getElementById('mTime').innerText = timing;
+            document.getElementById('mTime').innerText = time;
             document.getElementById('mRealPrice').innerText = realPrice;
             document.getElementById('mSellPrice').innerText = sellPrice;
             document.getElementById('mNote').innerText = note;
             openModal('detailModal');
         }
 
-        // เมื่อกดเข้าสู่ระบบ
-        function handleLogin(e) {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value || "user@kkumail.com";
-            const userName = email.split('@')[0];
-
-            currentUser = {
-                name: userName,
-                type: "🎓 นักศึกษา มข."
-            };
-
-            updateNavUser();
-            closeModal('authModal');
-            document.getElementById('authNotice').classList.add('hidden');
-
-            // เปิดหน้าลงขายทันทีหลังจากล็อกอินเสร็จ
-            handleSellClick();
-        }
-
-        // เมื่อสมัครสมาชิกใหม่
-        function handleRegister(e) {
-            e.preventDefault();
-            const regName = document.getElementById('regName').value || "NewUser_KKU";
-            const regType = document.getElementById('regType').value === 'student' ? "🎓 นักศึกษา มข." : "👤 บุคคลทั่วไป";
-
-            currentUser = {
-                name: regName,
-                type: regType
-            };
-
-            updateNavUser();
-            closeModal('authModal');
-            document.getElementById('authNotice').classList.add('hidden');
-            handleSellClick();
-        }
-
-        // อัปเดตปุ่มบน Navbar ให้แสดงว่าเข้าสู่ระบบแล้ว
-        function updateNavUser() {
-            const authNavArea = document.getElementById('authNavArea');
-            authNavArea.innerHTML = `
-                <div class="flex items-center gap-2 bg-slate-800/90 border border-slate-700 px-3 py-1.5 rounded-xl">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    <span class="text-xs font-semibold text-slate-200">${currentUser.name}</span>
-                    <button onclick="handleLogout()" class="text-[10px] text-slate-400 hover:text-red-400 ml-1 border-l border-slate-700 pl-2">ออก</button>
-                </div>
-            `;
-        }
-
-        // ออกจากระบบ
-        function handleLogout() {
-            currentUser = null;
-            document.getElementById('authNavArea').innerHTML = `
-                <button onclick="openAuthModal('login')"
-                    class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-700/80 transition font-medium hover:border-slate-500">
-                    เข้าสู่ระบบ
-                </button>
-            `;
-            alert("ออกจากระบบเรียบร้อยแล้ว");
-        }
-
-        let currentFilter = 'all';
-
-        function filterCategory(cat) {
-            currentFilter = cat;
-            const cards = document.querySelectorAll('.card-item');
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            let visibleCount = 0;
-
-            tabBtns.forEach(btn => {
-                btn.className = "tab-btn bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-700 transition";
-            });
-
-            const activeBtn = document.getElementById('btn-' + cat);
-            if (activeBtn) {
-                activeBtn.className = "tab-btn bg-gradient-to-r from-orange-500 to-amber-500 text-white text-xs sm:text-sm px-4 py-2 rounded-xl font-medium shadow-md transition";
-            }
-
-            cards.forEach(card => {
-                if (cat === 'all' || card.getAttribute('data-category') === cat) {
-                    card.classList.remove('hidden');
-                    visibleCount++;
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-
-            document.getElementById('itemCount').innerText = visibleCount;
-            document.getElementById('noResults').classList.toggle('hidden', visibleCount > 0);
-        }
-
-        function searchCards() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('.card-item');
-            let visibleCount = 0;
-
-            cards.forEach(card => {
-                const title = card.getAttribute('data-title').toLowerCase();
-                const matchesCat = (currentFilter === 'all' || card.getAttribute('data-category') === currentFilter);
-                if (title.includes(query) && matchesCat) {
-                    card.classList.remove('hidden');
-                    visibleCount++;
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-
-            document.getElementById('itemCount').innerText = visibleCount;
-            document.getElementById('noResults').classList.toggle('hidden', visibleCount > 0);
-        }
-
         function handleSellSubmit(e) {
             e.preventDefault();
-            alert('ลงประกาศปล่อยต่อสำเร็จแล้ว ในชื่อบัญชี: ' + currentUser.name);
+            const title = document.getElementById('fTitle').value;
+            const price = document.getElementById('fSellPrice').value;
+            const category = document.getElementById('fCategory').value;
+            const imgUrl = document.getElementById('fImgUrl').value || 'https://images.unsplash.com/photo-1580481072645-022f9a6d1270?w=600&auto=format&fit=crop';
+
+            const newCard = document.createElement('div');
+            newCard.className = "card-item glass-card rounded-2xl border border-slate-800 overflow-hidden card-hover flex flex-col justify-between";
+            newCard.setAttribute('data-category', category);
+            newCard.setAttribute('data-title', title);
+
+            newCard.innerHTML = `
+                <div class="h-44 w-full bg-slate-800 overflow-hidden relative">
+                    <img src="${imgUrl}" alt="${title}" class="w-full h-full object-cover">
+                </div>
+                <div class="p-5">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-orange-500/10 text-orange-400 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-orange-500/20">🆕 เพิ่งลงประกาศ</span>
+                        <span class="text-[11px] text-slate-500 font-light">เมื่อครู่นี้</span>
+                    </div>
+                    <h3 class="card-title text-base font-bold text-white mb-1">${title}</h3>
+                    <p class="text-xs text-slate-400 mb-4 flex items-center gap-1">📍 นัดรับใน มข.</p>
+                    <div class="bg-slate-900/80 p-3.5 rounded-xl mb-4 text-xs space-y-1.5 border border-slate-800/80">
+                        <div class="flex justify-between text-sm pt-1.5"><span class="font-medium text-slate-300">ราคาปล่อยต่อ:</span><span class="font-extrabold text-orange-400 text-base">${price} ฿</span></div>
+                    </div>
+                </div>
+                <div class="p-4 bg-slate-900/50 border-t border-slate-800/80 flex items-center justify-between">
+                    <span class="text-xs text-slate-300 font-medium">${currentUser.name}</span>
+                    <button onclick="openDetailModal('${title}', 'ใน มข.', 'พร้อมส่ง', '1 รายการ', 'นัดรับ', '-', '${price} ฿', 'ประกาศสินค้าใหม่')" class="bg-orange-500/10 hover:bg-orange-500 text-orange-400 hover:text-white border border-orange-500/30 text-xs font-medium px-3.5 py-1.5 rounded-lg transition">ดูรายละเอียด</button>
+                </div>
+            `;
+
+            document.getElementById('listingGrid').prepend(newCard);
             closeModal('sellModal');
-            document.getElementById('sellForm').reset();
+            alert('ลงประกาศสินค้าเรียบร้อยแล้ว!');
+            filterCategory('all');
         }
     </script>
 </body>
