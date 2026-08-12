@@ -76,14 +76,14 @@
             <div class="flex items-center space-x-3">
                 <div id="authNavArea">
                     <button onclick="openAuthModal('login')"
-                        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm px-5 py-2.5 rounded-xl border border-slate-700/80 transition font-medium hover:border-slate-500">
+                        class="bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-700/80 transition font-medium hover:border-slate-500">
                         เข้าสู่ระบบ
                     </button>
                 </div>
 
                 <button onclick="handleSellClick()"
-                    class="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-xl shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition active:scale-95 flex items-center gap-1.5">
-                    <span>ลงประกาศทันที</span>
+                    class="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold text-sm sm:text-base px-5 py-2.5 rounded-xl shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition active:scale-95 flex items-center justify-center whitespace-nowrap shrink-0">
+                    <span>ลงประกาศส่งต่อ</span>
                 </button>
             </div>
         </div>
@@ -400,7 +400,7 @@
         </div>
     </div>
 
-    <!-- Modal 3: Sell Form -->
+    <!-- Modal 3: Sell Form (Dynamic ตามหมวดหมู่) -->
     <div id="sellModal"
         class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
         <div class="glass-card border border-slate-700/80 rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl">
@@ -416,7 +416,7 @@
             <form id="sellForm" onsubmit="handleSellSubmit(event)" class="p-6 space-y-3.5 max-h-[75vh] overflow-y-auto">
                 <div>
                     <label class="block text-xs font-medium text-slate-300 mb-1">หมวดหมู่</label>
-                    <select id="fCategory" required
+                    <select id="fCategory" onchange="updateFormFieldsByCategory()" required
                         class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
                         <option value="table">🍽️ โต๊ะร้านอาหาร / คาเฟ่</option>
                         <option value="ticket">🎟️ บัตรคอนเสิร์ต / อีเวนต์</option>
@@ -424,8 +424,9 @@
                     </select>
                 </div>
                 <div>
-                    <label class="block text-xs font-medium text-slate-300 mb-1">หัวข้อสินค้า</label>
-                    <input type="text" id="fTitle" required placeholder="เช่น โต๊ะหลังมัก หรือ ชุดหนังสือ ฟิสิกส์ 1"
+                    <label id="lblTitle"
+                        class="block text-xs font-medium text-slate-300 mb-1">ชื่อร้านอาหาร/คาเฟ่</label>
+                    <input type="text" id="fTitle" required placeholder="เช่น ร้านหลังมัก (โซน A)"
                         class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
                 </div>
                 <div>
@@ -435,31 +436,33 @@
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-medium text-slate-300 mb-1">พิกัด / สถานที่นัดรับ</label>
-                        <input type="text" id="fZone" required placeholder="เช่น โซนกังสดาล, หลังมอ"
+                        <label id="lblZone" class="block text-xs font-medium text-slate-300 mb-1">พิกัด/โซนร้าน</label>
+                        <input type="text" id="fZone" required placeholder="เช่น โซนกังสดาล"
                             class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-slate-300 mb-1">วัน/เวลา นัดรับสิทธิ์</label>
-                        <input type="text" id="fDate" required placeholder="เช่น คืนนี้, เสาร์นี้"
-                            class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-medium text-slate-300 mb-1">จำนวน/รายละเอียดที่นั่ง</label>
-                        <input type="text" id="fSeats" required placeholder="เช่น 4-6 คน, 2 เล่ม"
-                            class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-300 mb-1">เงื่อนไขเวลา</label>
-                        <input type="text" id="fTime" required placeholder="เช่น เข้าก่อน 20:30 น."
+                        <label id="lblDate" class="block text-xs font-medium text-slate-300 mb-1">วันที่จองไว้</label>
+                        <input type="text" id="fDate" required placeholder="เช่น คืนนี้, 15 ส.ค."
                             class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-medium text-slate-300 mb-1">ราคาเดิม/ราคาป้าย (บาท)</label>
+                        <label id="lblSeats" class="block text-xs font-medium text-slate-300 mb-1">จำนวนที่นั่ง</label>
+                        <input type="text" id="fSeats" required placeholder="เช่น โต๊ะ 4-6 คน"
+                            class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label id="lblTime"
+                            class="block text-xs font-medium text-slate-300 mb-1">เงื่อนไขเวลา/เวลาเข้างาน</label>
+                        <input type="text" id="fTime" required placeholder="เช่น ต้องเข้าก่อน 20:30 น."
+                            class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label id="lblRealPrice"
+                            class="block text-xs font-medium text-slate-300 mb-1">มัดจำเดิม/ราคาป้าย (บาท)</label>
                         <input type="number" id="fRealPrice" required placeholder="300"
                             class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
                     </div>
@@ -470,9 +473,15 @@
                     </div>
                 </div>
                 <div>
+                    <label id="lblContact" class="block text-xs font-medium text-slate-300 mb-1">ช่องทางติดต่อซื้อขาย /
+                        นัดรับ</label>
+                    <input type="text" id="fContact" required placeholder="เช่น Line ID: @myline / Tel: 081-xxx-xxxx"
+                        class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
+                </div>
+                <div>
                     <label class="block text-xs font-medium text-slate-300 mb-1">รายละเอียดเพิ่มเติม /
                         สาเหตุที่ปล่อย</label>
-                    <textarea id="fNote" rows="3" required placeholder="เช่น ติดเรียนกะทันหันครับ, สภาพใหม่มาก..."
+                    <textarea id="fNote" rows="3" required placeholder="เช่น ติดแลปด่วนไปไม่ได้ครับ..."
                         class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-orange-500"></textarea>
                 </div>
                 <button type="submit"
@@ -586,6 +595,7 @@
                 openAuthModal('login');
             } else {
                 document.getElementById('sellerBadge').innerText = `ประกาศในนาม: ${currentUser.name} (${currentUser.badge})`;
+                updateFormFieldsByCategory();
                 document.getElementById('sellModal').classList.remove('hidden');
             }
         }
@@ -594,6 +604,95 @@
             document.getElementById(id).classList.add('hidden');
             if (id === 'authModal') {
                 document.getElementById('authNotice').classList.add('hidden');
+            }
+        }
+
+        // Dynamic Form Fields Handler
+        function updateFormFieldsByCategory() {
+            const cat = document.getElementById('fCategory').value;
+
+            const lblTitle = document.getElementById('lblTitle');
+            const fTitle = document.getElementById('fTitle');
+
+            const lblZone = document.getElementById('lblZone');
+            const fZone = document.getElementById('fZone');
+
+            const lblDate = document.getElementById('lblDate');
+            const fDate = document.getElementById('fDate');
+
+            const lblSeats = document.getElementById('lblSeats');
+            const fSeats = document.getElementById('fSeats');
+
+            const lblTime = document.getElementById('lblTime');
+            const fTime = document.getElementById('fTime');
+
+            const lblRealPrice = document.getElementById('lblRealPrice');
+
+            const lblContact = document.getElementById('lblContact');
+            const fContact = document.getElementById('fContact');
+
+            if (cat === 'table') {
+                lblTitle.innerText = "ชื่อร้านอาหาร/คาเฟ่";
+                fTitle.placeholder = "เช่น ร้านหลังมัก (โซน A หน้าเวที)";
+
+                lblZone.innerText = "พิกัด/โซนร้าน";
+                fZone.placeholder = "เช่น โซนกังสดาล";
+
+                lblDate.innerText = "วันที่จองไว้";
+                fDate.placeholder = "เช่น คืนนี้, 15 ส.ค.";
+
+                lblSeats.innerText = "จำนวนที่นั่ง";
+                fSeats.placeholder = "เช่น โต๊ะ 4-6 คน";
+
+                lblTime.innerText = "เงื่อนไขเวลาเข้าโต๊ะ";
+                fTime.placeholder = "เช่น ต้องเข้าก่อน 20:30 น.";
+
+                lblRealPrice.innerText = "ราคามัดจำเดิม (บาท)";
+
+                lblContact.innerText = "ช่องทางติดต่อ / พิกัดส่งมอบโต๊ะ";
+                fContact.placeholder = "เช่น Line ID: @xxx / นัดเจอหน้าร้าน";
+
+            } else if (cat === 'ticket') {
+                lblTitle.innerText = "ชื่อคอนเสิร์ต / ชื่องาน";
+                fTitle.placeholder = "เช่น Three Man Down Live in KKU";
+
+                lblZone.innerText = "สถานที่จัดงาน";
+                fZone.placeholder = "เช่น ศูนย์ประชุมฯ มข.";
+
+                lblDate.innerText = "วันแสดงคอนเสิร์ต";
+                fDate.placeholder = "เช่น เสาร์นี้, 20 ส.ค.";
+
+                lblSeats.innerText = "รายละเอียดโซน/บัตร";
+                fSeats.placeholder = "เช่น บัตรยืน (Zone A) x 2 ใบ";
+
+                lblTime.innerText = "เวลาประตูเปิด / เริ่มแสดง";
+                fTime.placeholder = "เช่น ประตูเปิด 18:00 น.";
+
+                lblRealPrice.innerText = "ราคาหน้าป้าย/ราคาเดิม (บาท)";
+
+                lblContact.innerText = "ช่องทางติดต่อ / รูปแบบการส่งมอบบัตร";
+                fContact.placeholder = "เช่น Line ID: @xxx / นัดรับบัตรจริงหน้างาน";
+
+            } else if (cat === 'book') {
+                lblTitle.innerText = "ชื่อหนังสือ / ชื่อวิชาสรุป";
+                fTitle.placeholder = "เช่น ชุดสรุปเตรียมสอบ Calculus 1 + Physics 1";
+
+                lblZone.innerText = "สถานที่นัดรับส่งต่อ";
+                fZone.placeholder = "เช่น คณะวิศวะ มข. / โซนกังสดาล";
+
+                lblDate.innerText = "ความพร้อมจัดส่ง/นัดรับ";
+                fDate.placeholder = "เช่น พร้อมส่งทันที / นัดรับวันจันทร์";
+
+                lblSeats.innerText = "สภาพหนังสือ / จำนวนเล่ม";
+                fSeats.placeholder = "เช่น 95% (มีรอยไฮไลท์เล็กน้อย) 2 เล่ม";
+
+                lblTime.innerText = "รูปแบบการจัดส่ง";
+                fTime.placeholder = "เช่น นัดรับมือใน มข. หรือ ส่ง Flash";
+
+                lblRealPrice.innerText = "ราคาซื้อมาเดิม (บาท)";
+
+                lblContact.innerText = "ช่องทางติดต่อ (Line / เบอร์โทร / FB)";
+                fContact.placeholder = "เช่น FB: Nattapong / Line ID: myline";
             }
         }
 
@@ -665,7 +764,8 @@
             const time = document.getElementById('fTime').value;
             const realPrice = document.getElementById('fRealPrice').value + ' ฿';
             const sellPrice = document.getElementById('fSellPrice').value + ' ฿';
-            const note = document.getElementById('fNote').value;
+            const contact = document.getElementById('fContact').value;
+            const note = document.getElementById('fNote').value + ` (ติดต่อ: ${contact})`;
 
             let catBadge = '🏷️ ปล่อยของ';
             let catColor = 'bg-orange-500/10 text-orange-400 border-orange-500/20';
