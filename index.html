@@ -373,9 +373,8 @@
                     <label class="block text-xs font-medium text-slate-300 mb-1">หมวดหมู่</label>
                     <select id="fCategory" onchange="updateFormFieldsByCategory()" required
                         class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500">
-                        <option value="table">🍽️ โต๊ะร้านอาหาร / คาเฟ่</option>
-                        <option value="ticket">🎟️ บัตรคอนเสิร์ต / อีเวนต์</option>
-                        <option value="book">📚 หนังสือ / ชีทสรุป</option>
+                        <option value="table">🍽️ โต๊ะร้านอาหาร </option>
+                        <option value="ticket">🎟️ บัตรคอนเสิร์ต </option>
                     </select>
                 </div>
                 <div>
@@ -628,26 +627,6 @@
                 lblContact.innerText = "ช่องทางติดต่อ / รูปแบบการส่งมอบบัตร";
                 fContact.placeholder = "เช่น Line ID: @xxx / นัดรับบัตรจริงหน้างาน";
 
-            } else if (cat === 'book') {
-                lblTitle.innerText = "ชื่อหนังสือ / ชื่อวิชาสรุป";
-                fTitle.placeholder = "เช่น ชุดสรุปเตรียมสอบ Calculus 1 + Physics 1";
-
-                lblZone.innerText = "สถานที่นัดรับส่งต่อ";
-                fZone.placeholder = "เช่น คณะวิศวะ มข. / โซนกังสดาล";
-
-                lblDate.innerText = "ความพร้อมจัดส่ง/นัดรับ";
-                fDate.placeholder = "เช่น พร้อมส่งทันที / นัดรับวันจันทร์";
-
-                lblSeats.innerText = "สภาพหนังสือ / จำนวนเล่ม";
-                fSeats.placeholder = "เช่น 95% (มีรอยไฮไลท์เล็กน้อย) 2 เล่ม";
-
-                lblTime.innerText = "รูปแบบการจัดส่ง";
-                fTime.placeholder = "เช่น นัดรับมือใน มข. หรือ ส่ง Flash";
-
-                lblRealPrice.innerText = "ราคาซื้อมาเดิม (บาท)";
-
-                lblContact.innerText = "ช่องทางติดต่อ (Line / เบอร์โทร / FB)";
-                fContact.placeholder = "เช่น FB: Nattapong / Line ID: myline";
             }
         }
 
