@@ -10,8 +10,8 @@ async function fetchPosts() {
   const { data: posts, error } = await _supabase
     .from('posts')
     .select('*')
-    .eq('status', 'available') // ดึงเฉพาะรายการที่ยังไม่ขาย
-    .order('created_at', { ascending: false }); // เอาโพสต์ใหม่ขึ้นก่อน
+    //.eq('status', 'available') // ดึงเฉพาะรายการที่ยังไม่ขาย
+    .order('id', { ascending: false }); // เอาโพสต์ใหม่ขึ้นก่อน
 
   if (error) {
     console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
